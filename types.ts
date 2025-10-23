@@ -26,6 +26,11 @@ export interface SiteSettings {
   facebookUrl?: string;
   instagramUrl?: string;
   githubUrl?: string;
+  impactNumbers?: {
+    projectsCompleted: number;
+    happyClients: number;
+    yearsOfExperience: number;
+  };
 }
 
 export interface BlogPost {

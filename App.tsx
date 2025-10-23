@@ -1,7 +1,8 @@
 
+
 import React from 'react';
-// FIX: Using named imports for react-router-dom to resolve module export issues.
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+// FIX: Reverted to namespace import for react-router-dom to resolve module export issues.
+import * as ReactRouterDom from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
 import { ThemeProvider } from './hooks/useTheme';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -18,32 +19,32 @@ function App(): React.ReactElement {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <HashRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
+        <ReactRouterDom.HashRouter>
+          <ReactRouterDom.Routes>
+            <ReactRouterDom.Route path="/login" element={<Login />} />
             {/* The "/*" route will match everything else and render the protected layout */}
-            <Route
+            <ReactRouterDom.Route
               path="/*"
               element={
                 <ProtectedRoute>
                   <Layout>
-                    <Routes>
-                      <Route path="/" element={<Dashboard />} />
-                      <Route path="/messages" element={<Messages />} />
-                      <Route path="/pricing" element={<Pricing />} />
-                      <Route path="/blog" element={<Blog />} />
-                      <Route path="/blog/new" element={<BlogPostEditor />} />
-                      <Route path="/blog/edit/:id" element={<BlogPostEditor />} />
-                      <Route path="/settings" element={<Settings />} />
+                    <ReactRouterDom.Routes>
+                      <ReactRouterDom.Route path="/" element={<Dashboard />} />
+                      <ReactRouterDom.Route path="/messages" element={<Messages />} />
+                      <ReactRouterDom.Route path="/pricing" element={<Pricing />} />
+                      <ReactRouterDom.Route path="/blog" element={<Blog />} />
+                      <ReactRouterDom.Route path="/blog/new" element={<BlogPostEditor />} />
+                      <ReactRouterDom.Route path="/blog/edit/:id" element={<BlogPostEditor />} />
+                      <ReactRouterDom.Route path="/settings" element={<Settings />} />
                       {/* A catch-all inside the protected layout to redirect to the dashboard */}
-                      <Route path="*" element={<Navigate to="/" replace />} />
-                    </Routes>
+                      <ReactRouterDom.Route path="*" element={<ReactRouterDom.Navigate to="/" replace />} />
+                    </ReactRouterDom.Routes>
                   </Layout>
                 </ProtectedRoute>
               }
             />
-          </Routes>
-        </HashRouter>
+          </ReactRouterDom.Routes>
+        </ReactRouterDom.HashRouter>
       </AuthProvider>
     </ThemeProvider>
   );

@@ -1,7 +1,9 @@
 
+
+
 import React, { useState } from 'react';
-// FIX: Using named import for react-router-dom to resolve module export issues.
-import { useNavigate } from 'react-router-dom';
+// FIX: Reverted to namespace import for react-router-dom to resolve module export issues.
+import * as ReactRouterDom from 'react-router-dom';
 import { Menu, Search } from 'lucide-react';
 
 interface HeaderProps {
@@ -10,7 +12,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ setSidebarOpen }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
+  const navigate = ReactRouterDom.useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
