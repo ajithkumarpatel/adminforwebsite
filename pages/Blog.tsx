@@ -1,9 +1,7 @@
 
-
-
 import React, { useState, useEffect, useCallback } from 'react';
-// FIX: Reverted to namespace import for react-router-dom to resolve module export issues.
-import * as ReactRouterDom from 'react-router-dom';
+// FIX: Using named import for react-router-dom to resolve module export issues.
+import { Link } from 'react-router-dom';
 import { collection, query, getDocs, deleteDoc, doc, orderBy as fbOrderBy } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { BlogPost } from '../types';
@@ -107,7 +105,7 @@ const Blog: React.FC = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Blog Posts</h1>
-        <Button as={ReactRouterDom.Link} to="/blog/new">
+        <Button as={Link} to="/blog/new">
           <PlusCircle size={20} className="mr-2" />
           Create New Post
         </Button>
@@ -156,7 +154,7 @@ const Blog: React.FC = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{post.createdAt.toDate().toLocaleDateString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                       <Button as={ReactRouterDom.Link} to={`/blog/edit/${post.id}`} variant="secondary" size="sm" aria-label="Edit Post">
+                       <Button as={Link} to={`/blog/edit/${post.id}`} variant="secondary" size="sm" aria-label="Edit Post">
                          <Edit size={16} />
                       </Button>
                       <Button variant="destructive" size="sm" onClick={() => setPostToDelete(post)} aria-label="Delete post">

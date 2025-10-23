@@ -1,9 +1,7 @@
 
-
-
 import React, { useState, ReactNode } from 'react';
-// FIX: Reverted to namespace import for react-router-dom to resolve module export issues.
-import * as ReactRouterDom from 'react-router-dom';
+// FIX: Using named imports for react-router-dom to resolve module export issues.
+import { useNavigate, Navigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
@@ -19,7 +17,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | ReactNode>('');
   const [loading, setLoading] = useState(false);
-  const navigate = ReactRouterDom.useNavigate();
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -54,7 +52,7 @@ const Login: React.FC = () => {
   
   // If user is already logged in, redirect to dashboard
   if (user) {
-    return <ReactRouterDom.Navigate to="/" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (

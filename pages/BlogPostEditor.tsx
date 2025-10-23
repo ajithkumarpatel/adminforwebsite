@@ -1,9 +1,7 @@
 
-
-
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-// FIX: Reverted to namespace import for react-router-dom to resolve module export issues.
-import * as ReactRouterDom from 'react-router-dom';
+// FIX: Using named imports for react-router-dom to resolve module export issues.
+import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../services/firebase';
@@ -19,8 +17,8 @@ import ToggleSwitch from '../components/ui/ToggleSwitch';
 import { marked } from 'marked';
 
 const BlogPostEditor: React.FC = () => {
-  const { id } = ReactRouterDom.useParams<{ id: string }>();
-  const navigate = ReactRouterDom.useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { user } = useAuth();
   
   const [title, setTitle] = useState('');

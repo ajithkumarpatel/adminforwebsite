@@ -12,8 +12,6 @@ import Alert from '../components/ui/Alert';
 import { FirebaseError } from '@firebase/app';
 import { Twitter, Linkedin, Facebook, Instagram, Github } from 'lucide-react';
 import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
-import ImpactNumbersAdmin from '../components/settings/ImpactNumbersAdmin';
-import ProfileAdmin from '../components/settings/ProfileAdmin';
 
 const securityRules = `rules_version = '2';
 service cloud.firestore {
@@ -194,11 +192,6 @@ const Settings: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Site Settings</h1>
-      
-      <ProfileAdmin />
-      
-      <ImpactNumbersAdmin />
-
       <form onSubmit={handleSave}>
         <Card>
           <CardHeader>

@@ -1,9 +1,7 @@
 
-
-
 import React from 'react';
-// FIX: Reverted to namespace import for react-router-dom to resolve module export issues.
-import * as ReactRouterDom from 'react-router-dom';
+// FIX: Using named imports for react-router-dom to resolve module export issues.
+import { useNavigate, NavLink } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../services/firebase';
 import { LayoutDashboard, MessageSquare, Tag, LogOut, Code, X, Settings, Sun, Moon, Newspaper } from 'lucide-react';
@@ -15,7 +13,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
-  const navigate = ReactRouterDom.useNavigate();
+  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
   const handleLogout = async () => {
@@ -59,26 +57,26 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         </div>
         <nav className="flex-1 px-4 py-6 space-y-2">
           {/* Use the `end` prop for root NavLink to avoid it being active for all child routes */}
-          <ReactRouterDom.NavLink to="/" className={navLinkClasses} end>
+          <NavLink to="/" className={navLinkClasses} end>
             <LayoutDashboard className="mr-3" size={20} />
             Dashboard
-          </ReactRouterDom.NavLink>
-          <ReactRouterDom.NavLink to="/messages" className={navLinkClasses}>
+          </NavLink>
+          <NavLink to="/messages" className={navLinkClasses}>
             <MessageSquare className="mr-3" size={20} />
             Contact Messages
-          </ReactRouterDom.NavLink>
-           <ReactRouterDom.NavLink to="/blog" className={navLinkClasses}>
+          </NavLink>
+           <NavLink to="/blog" className={navLinkClasses}>
             <Newspaper className="mr-3" size={20} />
             Blog Posts
-          </ReactRouterDom.NavLink>
-          <ReactRouterDom.NavLink to="/pricing" className={navLinkClasses}>
+          </NavLink>
+          <NavLink to="/pricing" className={navLinkClasses}>
             <Tag className="mr-3" size={20} />
             Pricing Plans
-          </ReactRouterDom.NavLink>
-          <ReactRouterDom.NavLink to="/settings" className={navLinkClasses}>
+          </NavLink>
+          <NavLink to="/settings" className={navLinkClasses}>
             <Settings className="mr-3" size={20} />
             Site Settings
-          </ReactRouterDom.NavLink>
+          </NavLink>
         </nav>
         <div className="px-4 py-4 border-t border-gray-700">
           <button

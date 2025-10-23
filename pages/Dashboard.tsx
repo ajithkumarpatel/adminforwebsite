@@ -9,7 +9,6 @@ import Alert from '../components/ui/Alert';
 import { MessageSquare, Tag, Clock, Mails, Star } from 'lucide-react';
 // FIX: Changed import from 'firebase/app' to '@firebase/app' to fix module resolution issue.
 import { FirebaseError } from '@firebase/app';
-import ImpactNumbersDisplay from '../components/dashboard/ImpactNumbersDisplay';
 
 const securityRules = `rules_version = '2';
 service cloud.firestore {
@@ -222,7 +221,7 @@ const Dashboard: React.FC = () => {
     <div className="space-y-8">
         <div>
             <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Dashboard</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-1">Welcome back, {user?.displayName || user?.email || 'Admin'}!</p>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Welcome back, {user?.email || 'Admin'}!</p>
         </div>
       
       {error && (
@@ -237,8 +236,6 @@ const Dashboard: React.FC = () => {
         <StatCard title="Pricing Plans" value={stats.totalPlans} icon={<Tag className="text-primary-600 dark:text-primary-400" />} loading={loading} />
         <StatCard title="Most Popular Plan" value={stats.mostPopularPlan} icon={<Star className="text-primary-600 dark:text-primary-400" />} loading={loading} />
       </div>
-
-      <ImpactNumbersDisplay />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <Card className="lg:col-span-3">

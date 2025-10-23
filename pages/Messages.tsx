@@ -1,9 +1,7 @@
 
-
-
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-// FIX: Reverted to namespace import for react-router-dom to resolve module export issues.
-import * as ReactRouterDom from 'react-router-dom';
+// FIX: Using named import for react-router-dom to resolve module export issues.
+import { useSearchParams } from 'react-router-dom';
 import { collection, query, getDocs, orderBy as fbOrderBy, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../services/firebase';
 import { ContactMessage } from '../types';
@@ -39,7 +37,7 @@ const Messages: React.FC = () => {
   const [messageToDelete, setMessageToDelete] = useState<ContactMessage | null>(null);
   const [viewingMessage, setViewingMessage] = useState<ContactMessage | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [searchParams] = ReactRouterDom.useSearchParams();
+  const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
 
   const fetchMessages = useCallback(async () => {
